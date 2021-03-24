@@ -1,0 +1,24 @@
+.weather-card {
+    background-color: rgb(207, 206, 206);
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 1rem;
+    margin: 0 1rem;
+    cursor: pointer;
+}
+
+.weather-date {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: medium;
+}
+
+.weather-weekdate {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.weather-temp {
+    margin: 0;
+}

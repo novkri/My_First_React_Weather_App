@@ -1,26 +1,41 @@
+.weather-container {
+    display: flex;
+    padding: 0 .5rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }  
+
 .weather-card {
     background-color: rgb(207, 206, 206);
     border-radius: 15px;
     border: 1px solid black;
     padding: 1rem;
-    margin: 0 1rem;
+    margin: 0 .5rem;
     cursor: pointer;
+    min-width: 8rem;
+}
+
+.clicked {
+    background-color: rgb(247, 181, 181);
 }
 
 .weather-date {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: medium;
 }
 
 .weather-weekdate {
     margin: 0;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: normal;
+    text-transform: capitalize;
 }
 
 .weather-temp {
     margin: 0;
+    font-size: 1rem;
 }
 
 .weather-table {
@@ -34,3 +49,13 @@
     justify-content: center;
     align-items: flex-start;
 }
+
+
+.picked-weather-container {
+    margin: 3rem 5rem;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 2rem;
+  
+    background-color: rgb(207, 206, 206);
+  }

@@ -40,16 +40,3 @@
 .timezone {
   margin: 2rem;
 }
-.weather-container {
-  display: flex;
-  padding: 0 .5rem;
-}
-
-.picked-weather {
-  margin: 5rem;
-  border: 1px solid black;
-  border-radius: 15px;
-  padding: 2rem;
-
-  background-color: rgb(207, 206, 206);
-}

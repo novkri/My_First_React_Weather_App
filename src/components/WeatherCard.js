@@ -1,16 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './WeatherCard.css'
+import DateDisplay from './DateDisplay'
+import RoundTemp from './RoundTemp'
 
-const WeatherCard = ({ forecast, onClick }) => {
+const WeatherCard = ({ forecast, onClickCard, currentClickedCard }) => {
+
+
   return (
-    forecast.map(f => (
-      <div key={f.dt} className="weather-card" onClick={() => onClick(f.dt)}>
-        <h3 className="weather-date">{new Date(f.dt * 1000).toLocaleDateString('ru-RU')}</h3>
-        <h5 className="weather-weekdate">{new Date(f.dt * 1000).toLocaleDateString('ru-RU', { weekday: 'long'})}</h5>
-        <img src={`http://openweathermap.org/img/wn/${f.weather[0].icon}@2x.png`} alt={f.weather[0].main} />
-        <p className="weather-temp"><strong>Днем: {Math.round(f.temp.day)} &deg;C </strong> Ночью: {Math.round(f.temp.night)}&deg;C</p>
-      </div>
-    ))
+    <div className="weather-container">
+      {
+        forecast.map(f => (
+          <div key={f.dt} className={currentClickedCard === f.dt ? 'weather-card clicked' : 'weather-card'} onClick={() => onClickCard(f.dt)}>
+            <h5 className="weather-weekdate">
+              <DateDisplay UTCDate={f.dt} options={{ weekday: 'long'}} checkIfToday={true} />
+            </h5>
+
+            <h3 className="weather-date">
+              <DateDisplay UTCDate={f.dt} />
+            </h3>
+            
+            <img src={`http://openweathermap.org/img/wn/${f.weather[0].icon}@2x.png`} alt={f.weather[0].main} />
+            <p className="weather-temp">
+              <strong>
+                Днем: <RoundTemp temp={f.temp.day} />
+              </strong> 
+            </p>
+            <p className="weather-temp">
+              Ночью: <RoundTemp temp={f.temp.day} />
+            </p>
+
+          </div>
+        ))
+      }
+    </div>
+    
   )
 }
  

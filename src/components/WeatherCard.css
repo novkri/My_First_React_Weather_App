@@ -1,3 +1,4 @@
+
 .weather-container {
     display: flex;
     padding: 0 .5rem;
@@ -102,4 +103,12 @@
   }
   .picked-header p {
       text-transform: capitalize;
+  }
+
+
+
+  .error-container {
+    color: #000;
+    cursor: default;
+    font-size: 1.2rem;
   }

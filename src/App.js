@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import WeatherCard from './components/WeatherCard'
 import ChoosenWeather from './components/ChoosenWeather'
 
+// в хуке вилл маунт сделать?
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(success);
 }
@@ -38,8 +39,8 @@ function App() {
   return (
     <div className="App">
       <h2 className="timezone">{timezone}</h2>
-      { forecast.length > 0 && <WeatherCard forecast={forecast} onClickCard={showDetails} currentClickedCard={clickedCard} />}
-      { oneDayForecast.length > 0 && <ChoosenWeather day={oneDayForecast[0]} />}
+      <WeatherCard forecast={forecast} onClickCard={showDetails} currentClickedCard={clickedCard} />
+      {/* <ChoosenWeather day={oneDayForecast[0]} /> */}
     </div>
   );
 }

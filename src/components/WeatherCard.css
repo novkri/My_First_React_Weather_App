@@ -22,3 +22,15 @@
 .weather-temp {
     margin: 0;
 }
+
+.weather-table {
+    display: flex;
+    flex-direction: row;
+}
+
+.weather-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}

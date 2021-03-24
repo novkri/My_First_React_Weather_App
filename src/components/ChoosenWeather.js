@@ -1,17 +1,30 @@
 import React from 'react'
+import './WeatherCard.css'
 
 const ChoosenWeather = ({ day }) => {
   console.log(day);
   return ( 
     <>
+    температуру округлить
       <h3 className="weather-date">{new Date(day.dt * 1000).toLocaleDateString('ru-RU')}</h3>
-      <div>
-      feels_like:
-        day: {day.feels_like.day}
-        eve: {day.feels_like.eve}
-        morn: {day.feels_like.morn}
-        night: {day.feels_like.night}
+      <p>max: {day.temp.max}, min: {day.temp.min}</p>
+      <div className="weather-table">
+        <div className="actual-weather weather-col">
+          <p><strong>Температура</strong></p>
+          <p><strong>Утром: </strong> {day.temp.morn}</p>
+          <p><strong>Днем: </strong> {day.temp.day}</p>
+          <p><strong>Вечером: </strong> {day.temp.eve}</p>
+          <p><strong>Ночью: </strong> {day.temp.night}</p>
+        </div>
+        <div className="feels-like weather-col">
+          <p><strong>Ощущается как</strong></p>
+          <p><strong>Утром: </strong> {day.feels_like.morn}</p>
+          <p><strong>Днем: </strong> {day.feels_like.day}</p>
+          <p><strong>Вечером: </strong> {day.feels_like.eve}</p>
+          <p><strong>Ночью: </strong> {day.feels_like.night}</p>
+        </div>
       </div>
+      {/*
       <div>
         humidity: {day.humidity}
         pop: {day.pop}
@@ -20,15 +33,7 @@ const ChoosenWeather = ({ day }) => {
         sunrise: {new Date(day.sunrise * 1000).toLocaleTimeString('ru-RU')}
         sunset: {new Date(day.sunset * 1000).toLocaleTimeString('ru-RU')}
       </div>
-      <div>
-      temp:
-        day: {day.temp.day}
-        eve: {day.temp.eve}
-        max: {day.temp.max}
-        min: {day.temp.min}
-        morn: {day.temp.morn}
-        night: {day.temp.night}
-      </div>
+
       <div>
       uvi: {day.uvi}
       wind_deg: {day.wind_deg}
@@ -36,9 +41,9 @@ wind_speed: {day.wind_speed}
 
 
       weather: 
-description: "снег" {day.weather[0].description}
+description: {day.weather[0].description}
 icon: "13d"
-      </div>
+      </div> */}
     </>
    );
 }

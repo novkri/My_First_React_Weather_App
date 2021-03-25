@@ -1,7 +1,6 @@
 
 .weather-container {
     display: flex;
-    padding-top: .5rem;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
@@ -10,14 +9,15 @@
 .weather-card {
     border-radius: 15px;
     padding: 1rem;
-    margin: 0 .5rem;
+    margin: .5rem;
     cursor: pointer;
     min-width: 8rem;
+    text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.82);
 
-    background: rgba( 255, 255, 255, 0.15 );
+    background: rgba( 255, 249, 249, 0.20 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 10.0px );
-    -webkit-backdrop-filter: blur( 10.0px );
+    backdrop-filter: blur( 7.5px );
+    -webkit-backdrop-filter: blur( 7.5px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
@@ -34,19 +34,20 @@
 .weather-date {
     margin: .3rem 0;
     font-size: 1rem;
-    font-weight: medium;
+    font-weight: 600;
 }
 
 .weather-weekdate {
     margin: 0;
     font-size: 1.2rem;
-    font-weight: normal;
+    font-weight: 600;
     text-transform: capitalize;
 }
 
 .weather-temp {
     margin: .3rem 0;
     font-size: 1rem;
+    font-weight: 500;
 }
 
 .weather-table {

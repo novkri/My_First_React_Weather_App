@@ -3,7 +3,7 @@ import React from 'react';
 const RoundTemp = ({ temp, unit = 'c'}) => {
   return ( 
     <>
-      {Math.round(temp)} &deg; {unit.toUpperCase()}
+      {Math.round(temp)} &deg;{unit.toUpperCase()}
     </>
     );
 }

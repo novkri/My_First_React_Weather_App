@@ -40,7 +40,8 @@ function App() {
     <div className="App">
       <h2 className="timezone">{timezone}</h2>
       <WeatherCard forecast={forecast} onClickCard={showDetails} currentClickedCard={clickedCard} />
-      {/* <ChoosenWeather day={oneDayForecast[0]} /> */}
+      { clickedCard &&  <ChoosenWeather day={oneDayForecast} />}
+     
     </div>
   );
 }

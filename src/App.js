@@ -2,6 +2,7 @@ import './App.css'
 import React, { useState, useEffect } from 'react'
 import WeatherCard from './components/WeatherCard'
 import ChoosenWeather from './components/ChoosenWeather'
+import Loader from './components/Loader'
 
 // в хуке вилл маунт сделать?
 if (navigator.geolocation) {
@@ -17,6 +18,7 @@ function App() {
   const [timezone, setTimezone] = useState('')
   const [oneDayForecast, setOneDayForecast] = useState([])
   const [clickedCard, setClickedCard] = useState()
+  const [isLoading, setIsLoading] = useState(true);
 
   const lat = localStorage.getItem("USER_LATITUDE")
   const lon = localStorage.getItem("USER_LONGITUDE")
@@ -25,6 +27,7 @@ function App() {
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&&exclude=minutely&lang=ru&appid=${process.env.REACT_APP_API_KEY}`)
       .then(res => res.json())
       .then(data => {
+        setIsLoading(false)
         setTimezone(data.timezone)
         setForecast(data.daily)
       })
@@ -36,12 +39,22 @@ function App() {
     setClickedCard(e)
   }
 
+  const renderBody = () => {
+    if (isLoading) {
+      return <Loader />
+    }
+    return (
+      <>
+        <h2 className="timezone">{timezone}</h2>
+        <WeatherCard forecast={forecast} onClickCard={showDetails} currentClickedCard={clickedCard} />
+        { clickedCard &&  <ChoosenWeather day={oneDayForecast} />}
+      </>
+    )
+  }
+
   return (
     <div className="App">
-      <h2 className="timezone">{timezone}</h2>
-      <WeatherCard forecast={forecast} onClickCard={showDetails} currentClickedCard={clickedCard} />
-      { clickedCard &&  <ChoosenWeather day={oneDayForecast} />}
-     
+     {renderBody()}
     </div>
   );
 }

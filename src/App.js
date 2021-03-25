@@ -4,21 +4,23 @@ import WeatherCard from './components/WeatherCard'
 import ChoosenWeather from './components/ChoosenWeather'
 import Loader from './components/Loader'
 
-// в хуке вилл маунт сделать?
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(success);
-}
-function success(position) {
-  localStorage.setItem("USER_LATITUDE", position.coords.latitude);
-  localStorage.setItem("USER_LONGITUDE", position.coords.longitude);
-}
 
 function App() {
   const [forecast, setForecast] = useState([])
   const [timezone, setTimezone] = useState('')
   const [oneDayForecast, setOneDayForecast] = useState([])
   const [clickedCard, setClickedCard] = useState()
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success);
+    }
+    function success(position) {
+      localStorage.setItem("USER_LATITUDE", position.coords.latitude);
+      localStorage.setItem("USER_LONGITUDE", position.coords.longitude);
+    }
+  }, [])
 
   const lat = localStorage.getItem("USER_LATITUDE")
   const lon = localStorage.getItem("USER_LONGITUDE")

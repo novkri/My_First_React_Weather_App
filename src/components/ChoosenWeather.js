@@ -5,6 +5,7 @@ import RoundTemp from './RoundTemp'
 import TableCreator from './TableCreator'
 import UFIndex from './UFIndex'
 import { GiSunset, GiSunrise } from "react-icons/gi"
+import { MdClose } from "react-icons/md"
 import PropTypes from 'prop-types'
 
 const ChoosenWeather = ({ day }) => {
@@ -18,12 +19,14 @@ const ChoosenWeather = ({ day }) => {
     return (
       <>
         <div className="picked-header">
+        
           <h3 className="weather-date">
             <DateDisplay UTCDate={dayForecast.dt} checkIfToday={true} />
           </h3>
           <p>{dayForecast.weather[0].description}</p>
           <p>max: <RoundTemp temp={dayForecast.temp.max} />, min: <RoundTemp temp={dayForecast.temp.min} /> </p>
         </div>
+
 
         <div className="picked-info">
 
@@ -64,6 +67,7 @@ const ChoosenWeather = ({ day }) => {
 
   return ( 
     <div className="picked-container clicked">
+      <button className="btn picked-close"><MdClose size="1.6rem" /></button>
       { renderChoosenBody() }
     </div>
    );

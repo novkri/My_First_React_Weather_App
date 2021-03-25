@@ -6,6 +6,7 @@
 :root {
 	-moz-tab-size: 4;
 	tab-size: 4;
+	font-size: 16px;
 }
 
 html {
@@ -17,7 +18,7 @@ html {
 body {
 	margin: 0;
 	background-image: url('./back.jpg');
-	background-position: center;
+	background-position: top center;
 	background-repeat: no-repeat;
 }
 
@@ -39,3 +40,29 @@ body {
 p {
 	margin: .5rem 0;
 }
+
+.btn {
+	width: min-content;
+	border-radius: 5px;
+	border: none;
+}
+.btn:focus {
+	outline: none;
+}
+.btn:hover {
+	cursor: pointer;
+}
+
+
+@media screen and (max-width: 500px) {
+ :root {
+	 font-size: 12px;
+ }
+
+}
+
+@media screen and (max-width: 1400px) {
+	body {
+	   background-size: cover;
+	}
+   }

@@ -16,13 +16,15 @@ html {
 
 body {
 	margin: 0;
-  background-image: url('./back.jpg');
-  background-position: center;
+	background-image: url('./back.jpg');
+	background-position: center;
+	background-size: cover;
 }
 
 
 body {
 	font-family:
+		'Poppins',
 		system-ui,
 		-apple-system, /* Firefox supports this but not yet `system-ui` */
 		'Segoe UI',

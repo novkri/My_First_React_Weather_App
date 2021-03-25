@@ -13,6 +13,8 @@
 }
 
 .timezone {
-  margin: 2rem;
-  text-decoration: underline;
+  margin: 2rem auto;
+  padding: 9px;
+  background-color: black;
+  width: fit-content;
 }

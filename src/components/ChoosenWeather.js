@@ -5,6 +5,7 @@ import RoundTemp from './RoundTemp'
 import TableCreator from './TableCreator'
 import UFIndex from './UFIndex'
 import { GiSunset, GiSunrise } from "react-icons/gi"
+import PropTypes from 'prop-types'
 
 const ChoosenWeather = ({ day }) => {
   const dayForecast = day[0]
@@ -67,5 +68,8 @@ const ChoosenWeather = ({ day }) => {
     </div>
    );
 }
- 
+
+ChoosenWeather.propTypes = {
+  day: PropTypes.arrayOf(PropTypes.object)
+}
 export default ChoosenWeather;

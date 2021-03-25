@@ -1,12 +1,15 @@
 import React from 'react'
 import RoundTemp from './RoundTemp'
 import './Table.css'
+import PropTypes from 'prop-types'
 
 const TableCreator = ({ name, data}) => {
   return ( 
     <>
       <thead>
-        <th className="table-header">{name}</th>
+        <tr>
+          <th className="table-header">{name}</th>
+        </tr>
       </thead>
       <tbody>
         <tr className="table-row">
@@ -29,5 +32,10 @@ const TableCreator = ({ name, data}) => {
     </>
    );
 }
- 
+
+TableCreator.propTypes = {
+  data: PropTypes.object,
+  name: PropTypes.string
+}
+
 export default TableCreator;

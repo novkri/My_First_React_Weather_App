@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 const RoundTemp = ({ temp, unit = 'c'}) => {
   return ( 
@@ -7,5 +8,10 @@ const RoundTemp = ({ temp, unit = 'c'}) => {
     </>
     );
 }
- 
+
+RoundTemp.propTypes = {
+  temp: PropTypes.number.isRequired,
+  unit: PropTypes.string
+}
+
 export default RoundTemp;

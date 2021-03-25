@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const UFIndex = ({ UF }) => {
   const roundedUF = Math.round(UF)
@@ -36,5 +37,10 @@ const UFIndex = ({ UF }) => {
     </>
   );
 }
- 
+
+UFIndex.propTypes = {
+  UF: PropTypes.number,
+}
+
+
 export default UFIndex;

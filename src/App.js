@@ -13,10 +13,10 @@ function success(position) {
 }
 
 function App() {
-  const [forecast, setForecast] = useState({})
+  const [forecast, setForecast] = useState([])
   const [timezone, setTimezone] = useState('')
-  const [oneDayForecast, setOneDayForecast] = useState({})
-  const [clickedCard, setClickedCard] = useState('')
+  const [oneDayForecast, setOneDayForecast] = useState([])
+  const [clickedCard, setClickedCard] = useState()
 
   const lat = localStorage.getItem("USER_LATITUDE")
   const lon = localStorage.getItem("USER_LONGITUDE")

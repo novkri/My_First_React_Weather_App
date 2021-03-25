@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './WeatherCard.css'
 import DateDisplay from './DateDisplay'
 import RoundTemp from './RoundTemp'
+import PropTypes from 'prop-types'
 
 const WeatherCard = ({ forecast, onClickCard, currentClickedCard }) => {
 
@@ -48,5 +49,10 @@ const WeatherCard = ({ forecast, onClickCard, currentClickedCard }) => {
     </div>
   )
 }
- 
+
+WeatherCard.propTypes = {
+  forecast: PropTypes.arrayOf(PropTypes.object),
+  onClickCard: PropTypes.func,
+  currentClickedCard: PropTypes.number
+}
 export default WeatherCard;

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const DateDisplay = ({ UTCDate, isDay = true, options = {}, checkIfToday = false, locale = 'ru-RU' }) => {
 
@@ -19,5 +20,12 @@ const dateOrTime = () => {
     </>
    );
 }
- 
+
+DateDisplay.propTypes = {
+  UTCDate: PropTypes.number.isRequired,
+  isDay: PropTypes.bool,
+  options: PropTypes.object,
+  checkIfToday: PropTypes.bool,
+  locale: PropTypes.string
+}
 export default DateDisplay;

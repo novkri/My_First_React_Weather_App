@@ -4,8 +4,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
-} from "react-router-dom";
+} from "react-router-dom"
 import WeatherCard from './components/WeatherCard'
 import ChoosenWeather from './components/ChoosenWeather'
 import Loader from './components/Loader'
@@ -57,43 +56,32 @@ function App() {
       setClickedCard(e)    
   }
 
-  const closeCurrentCard = () => {
-    setClickedCard(null)
-  }
-
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              {/* shows the 5-day forecast */}
-              <Link to="/">Home</Link>
-            </li>
-          </ul>
-        </nav>
+      <Switch>
+        <Route path="/:nameOfTheDay">
+          <ChoosenWeather day={oneDayForecast} />
+        </Route>
+        
+        <Route path="/">
+        <div className="App">
+          {isError && <div>ЧТо-то пошло не так...</div>}
 
-        <Switch>
-          <Route path="/:nameOfTheDay">
-            <ChoosenWeather day={oneDayForecast} />
-          </Route>
-          
-          <Route path="/">
-          <div className="App">
-            {isError && <div>ЧТо-то пошло не так...</div>}
-
-            { isLoading ? 
-              <Loader /> : (
-                <>
-                  <h2 className="timezone">{timezone}</h2>
-                  <WeatherCard forecast={forecast} onClickCard={showDetails} currentClickedCard={clickedCard} />
-                </>
-              )
-            }
-          </div>
-          </Route>
-        </Switch>
-      </div>
+          { isLoading ? 
+            <Loader /> : (
+              <>
+                <h2 className="timezone">{timezone}</h2>
+                <WeatherCard
+                  forecast={forecast}
+                  onClickCard={showDetails}
+                  currentClickedCard={clickedCard}
+                />
+              </>
+            )
+          }
+        </div>
+        </Route>
+      </Switch>
     </Router>
   );
 }

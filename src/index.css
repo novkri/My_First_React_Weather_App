@@ -20,6 +20,7 @@ body {
 	background-image: url('./back.jpg');
 	background-position: top center;
 	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 
@@ -53,16 +54,24 @@ p {
 	cursor: pointer;
 }
 
+a, a:-webkit-any-link {
+    width: max-content;
+	color: #fff;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #fff;
+}
 
 @media screen and (max-width: 500px) {
  :root {
-	 font-size: 12px;
+	 font-size: 18px;
  }
-
 }
 
-@media screen and (max-width: 1400px) {
-	body {
-	   background-size: cover;
+@media screen and (min-width: 1900px) {
+	:root {
+		font-size: 24px;
 	}
-   }
+}

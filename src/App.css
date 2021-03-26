@@ -3,18 +3,10 @@
   color: #fff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .timezone {
   margin: 2rem auto;
   padding: 9px;
   background-color: black;
   width: fit-content;
+  cursor: default;
 }

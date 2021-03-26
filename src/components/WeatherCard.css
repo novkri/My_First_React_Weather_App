@@ -12,11 +12,15 @@
   cursor: pointer;
   min-width: 8rem;
   text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.82);
+}
 
+
+.glass {
   background: rgba( 255, 249, 249, 0.20 );
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 7.5px );
-  -webkit-backdrop-filter: blur( 7.5px );
+  /* ломает тултип: (?????) */
+  /* backdrop-filter: blur( 7.5px ); */
+  /* -webkit-backdrop-filter: blur( 7.5px ); */
   border-radius: 10px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
@@ -25,15 +29,6 @@
   transform: scale(1.1, 1.1);
 }
 
-
-.clicked {
-    background: rgba( 25, 207, 249, 0.35 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 20.0px );
-    -webkit-backdrop-filter: blur( 20.0px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-}
 
 .weather-date {
     margin: .3rem 0;
@@ -88,15 +83,15 @@
   display: flex;
   flex-direction: column;
   border-radius: 15px;
-  padding: 2rem;
+  padding: 1.5rem 2rem;
   max-width: 45rem;
   margin: 2rem auto;
-  position: relative;
+  color: #fff;
+  text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.82);
+  cursor: default;
 }
+
 .picked-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
   background-color: transparent;
   color: #fff;
 }
@@ -104,14 +99,19 @@
 .picked-header {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  border-bottom: 1px solid rgba( 255, 255, 255, 0.18 );
+  justify-content: space-between;
+
   padding-bottom: 1rem;
   flex-wrap: wrap;
-  padding-right: 2rem;
-  padding-left: 2rem;
   font-size: 1.3rem;
 }
+
+.sub-header {
+  border-bottom: 1px solid rgba( 255, 255, 255, 0.18 );
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
 .picked-footer {
   display: flex;
   align-items: center;
@@ -143,12 +143,4 @@
   color: #000;
   cursor: default;
   font-size: 1.2rem;
-}
-
-
-
-@media screen and (max-width: 500px) {
-  .weather-table {
-    font-size: 1.3rem;
-  }
 }

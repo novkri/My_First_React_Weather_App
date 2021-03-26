@@ -8,8 +8,9 @@ import { GiSunset, GiSunrise } from "react-icons/gi"
 import { MdClose } from "react-icons/md"
 import PropTypes from 'prop-types'
 
-const ChoosenWeather = ({ day }) => {
+const ChoosenWeather = ({ day, onClick }) => {
   const dayForecast = day[0]
+
   const renderChoosenBody = () => {
     if (!day || !day.length) return (
       <div className="error-container weather-card">
@@ -67,7 +68,7 @@ const ChoosenWeather = ({ day }) => {
 
   return ( 
     <div className="picked-container clicked">
-      <button className="btn picked-close"><MdClose size="1.6rem" /></button>
+      <button className="btn picked-close" onClick={onClick}><MdClose size="1.6rem" /></button>
       { renderChoosenBody() }
     </div>
    );

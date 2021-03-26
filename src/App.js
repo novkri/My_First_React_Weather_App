@@ -11,17 +11,7 @@ function App() {
   const [oneDayForecast, setOneDayForecast] = useState([])
   const [clickedCard, setClickedCard] = useState()
   const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(false);
-
-  // useEffect(() => {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(success);
-  //   }
-  //   function success(position) {
-  //     localStorage.setItem("USER_LATITUDE", position.coords.latitude);
-  //     localStorage.setItem("USER_LONGITUDE", position.coords.longitude);
-  //   }
-  // }, [])
+  const [isError, setIsError] = useState(false)
 
   const lat = localStorage.getItem("USER_LATITUDE")
   const lon = localStorage.getItem("USER_LONGITUDE")
@@ -43,7 +33,6 @@ function App() {
         await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&&exclude=minutely&lang=ru&appid=${process.env.REACT_APP_API_KEY}`)
           .then(res => res.json())
           .then(data => {
-        // setIsLoading(false)
         setTimezone(data.timezone)
         setForecast(data.daily)
         })
@@ -57,9 +46,14 @@ function App() {
   }, [lat, lon])
 
   const showDetails = (e) => {
-    const pickedDayForecast = forecast.filter(f => f.dt === e)
-    setOneDayForecast(pickedDayForecast)
-    setClickedCard(e)
+    if (!clickedCard) {
+      const pickedDayForecast = forecast.filter(f => f.dt === e)
+      setOneDayForecast(pickedDayForecast)
+      setClickedCard(e)
+    } else {
+      setClickedCard(null)
+    }
+    
   }
 
   return (
@@ -71,7 +65,7 @@ function App() {
           <>
             <h2 className="timezone">{timezone}</h2>
             <WeatherCard forecast={forecast} onClickCard={showDetails} currentClickedCard={clickedCard} />
-            { clickedCard &&  <ChoosenWeather day={oneDayForecast} />}
+            { clickedCard &&  <ChoosenWeather day={oneDayForecast} onClick={showDetails} />}
           </>
         )
       }

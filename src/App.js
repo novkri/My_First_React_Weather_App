@@ -1,5 +1,11 @@
 import './App.css'
 import React, { useState, useEffect } from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import WeatherCard from './components/WeatherCard'
 import ChoosenWeather from './components/ChoosenWeather'
 import Loader from './components/Loader'
@@ -46,14 +52,9 @@ function App() {
   }, [lat, lon])
 
   const showDetails = (e) => {
-    if (clickedCard === e) {
-      setClickedCard(null)
-    } else {
       const pickedDayForecast = forecast.filter(f => f.dt === e)
       setOneDayForecast(pickedDayForecast)
-      setClickedCard(e)
-    }
-    
+      setClickedCard(e)    
   }
 
   const closeCurrentCard = () => {
@@ -61,19 +62,39 @@ function App() {
   }
 
   return (
-    <div className="App">
-      {isError && <div>ЧТо-то пошло не так...</div>}
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              {/* shows the 5-day forecast */}
+              <Link to="/">Home</Link>
+            </li>
+          </ul>
+        </nav>
 
-      { isLoading ? 
-        <Loader /> : (
-          <>
-            <h2 className="timezone">{timezone}</h2>
-            <WeatherCard forecast={forecast} onClickCard={showDetails} currentClickedCard={clickedCard} />
-            { clickedCard &&  <ChoosenWeather day={oneDayForecast} onClick={closeCurrentCard} />}
-          </>
-        )
-      }
-    </div>
+        <Switch>
+          <Route path="/:nameOfTheDay">
+            <ChoosenWeather day={oneDayForecast} />
+          </Route>
+          
+          <Route path="/">
+          <div className="App">
+            {isError && <div>ЧТо-то пошло не так...</div>}
+
+            { isLoading ? 
+              <Loader /> : (
+                <>
+                  <h2 className="timezone">{timezone}</h2>
+                  <WeatherCard forecast={forecast} onClickCard={showDetails} currentClickedCard={clickedCard} />
+                </>
+              )
+            }
+          </div>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

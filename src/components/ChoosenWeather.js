@@ -5,10 +5,20 @@ import RoundTemp from './RoundTemp'
 import TableCreator from './TableCreator'
 import UFIndex from './UFIndex'
 import { GiSunset, GiSunrise } from "react-icons/gi"
-import { MdClose } from "react-icons/md"
+import { IoReturnUpBackOutline } from "react-icons/io5"
 import PropTypes from 'prop-types'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams
+} from "react-router-dom";
 
-const ChoosenWeather = ({ day, onClick }) => {
+const ChoosenWeather = ({ day }) => {
+  let { nameOfTheDay } = useParams()
+
+  console.log(nameOfTheDay);
   const dayForecast = day[0]
 
   const renderChoosenBody = () => {
@@ -68,7 +78,8 @@ const ChoosenWeather = ({ day, onClick }) => {
 
   return ( 
     <div className="picked-container clicked">
-      <button className="btn picked-close" onClick={onClick}><MdClose size="1.6rem" /></button>
+      {/* сделать подсказку при наведении на кнопку */}
+      <Link to="/"><button className="btn picked-close"><IoReturnUpBackOutline size="1.6rem" /></button></Link>
       { renderChoosenBody() }
     </div>
    );

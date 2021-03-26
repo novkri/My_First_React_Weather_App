@@ -36,7 +36,7 @@ const ChoosenWeather = ({ day, onClick }) => {
             </table>
             
             <table className="weather-table">
-              <TableCreator name='Ощущается как' data={dayForecast.temp} />
+              <TableCreator name='Ощущается как' data={dayForecast.feels_like} />
             </table> 
 
             <div className="weather-table">

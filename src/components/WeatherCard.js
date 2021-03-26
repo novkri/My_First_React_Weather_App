@@ -33,7 +33,7 @@ const WeatherCard = ({ forecast, onClickCard, currentClickedCard }) => {
             </strong> 
           </p>
           <p className="weather-temp">
-            Ночью: <RoundTemp temp={f.temp.day} />
+            Ночью: <RoundTemp temp={f.temp.night} />
           </p>
         </div>
       ))

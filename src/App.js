@@ -46,14 +46,18 @@ function App() {
   }, [lat, lon])
 
   const showDetails = (e) => {
-    if (!clickedCard) {
+    if (clickedCard === e) {
+      setClickedCard(null)
+    } else {
       const pickedDayForecast = forecast.filter(f => f.dt === e)
       setOneDayForecast(pickedDayForecast)
       setClickedCard(e)
-    } else {
-      setClickedCard(null)
     }
     
+  }
+
+  const closeCurrentCard = () => {
+    setClickedCard(null)
   }
 
   return (
@@ -65,7 +69,7 @@ function App() {
           <>
             <h2 className="timezone">{timezone}</h2>
             <WeatherCard forecast={forecast} onClickCard={showDetails} currentClickedCard={clickedCard} />
-            { clickedCard &&  <ChoosenWeather day={oneDayForecast} onClick={showDetails} />}
+            { clickedCard &&  <ChoosenWeather day={oneDayForecast} onClick={closeCurrentCard} />}
           </>
         )
       }

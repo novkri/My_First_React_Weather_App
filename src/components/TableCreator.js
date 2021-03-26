@@ -1,6 +1,6 @@
 import React from 'react'
-import RoundTemp from './RoundTemp'
 import './Table.css'
+import RoundTemp from './RoundTemp'
 import PropTypes from 'prop-types'
 
 const TableCreator = ({ name, data}) => {

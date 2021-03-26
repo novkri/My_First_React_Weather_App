@@ -26,8 +26,8 @@ function App() {
       navigator.geolocation.getCurrentPosition(success);
     }
     function success(position) {
-      localStorage.setItem("USER_LATITUDE", position.coords.latitude);
-      localStorage.setItem("USER_LONGITUDE", position.coords.longitude);
+      localStorage.setItem("USER_LATITUDE", position.coords.latitude)
+      localStorage.setItem("USER_LONGITUDE", position.coords.longitude)
     }
 
     const fetchForecast = async () => {
@@ -39,7 +39,12 @@ function App() {
           .then(res => res.json())
           .then(data => {
         setTimezone(data.timezone)
-        setForecast(data.daily)
+
+        if (clickedCard) {
+          localStorage.setItem("ONE_DAY_FORECAST", JSON.stringify(data.daily.filter(day => day.dt === clickedCard)));
+          setOneDayForecast(data.daily.filter(day => day.dt === clickedCard))
+        }
+        setForecast(data.daily.slice(0, 7))
         })
       } catch (error) {
         setIsError(true)
@@ -48,12 +53,13 @@ function App() {
     }
 
     fetchForecast()
-  }, [lat, lon])
+  }, [lat, lon, clickedCard ])
+
 
   const showDetails = (e) => {
-      const pickedDayForecast = forecast.filter(f => f.dt === e)
-      setOneDayForecast(pickedDayForecast)
-      setClickedCard(e)    
+    const pickedDayForecast = forecast.filter(f => f.dt === e)
+    setOneDayForecast(pickedDayForecast)
+    setClickedCard(e)    
   }
 
   return (
@@ -65,16 +71,14 @@ function App() {
         
         <Route path="/">
         <div className="App">
-          {isError && <div>ЧТо-то пошло не так...</div>}
-
           { isLoading ? 
             <Loader /> : (
+              isError ? <div className="load-error">Что-то пошло не так :C</div> :
               <>
                 <h2 className="timezone">{timezone}</h2>
                 <WeatherCard
                   forecast={forecast}
                   onClickCard={showDetails}
-                  currentClickedCard={clickedCard}
                 />
               </>
             )

@@ -1,15 +1,12 @@
 import React from 'react'
+import { Link } from "react-router-dom"
 import './WeatherCard.css'
 import DateDisplay from './DateDisplay'
 import RoundTemp from './RoundTemp'
-import {
-  Link
-} from "react-router-dom";
 
 import PropTypes from 'prop-types'
 
-const WeatherCard = ({ forecast, onClickCard, currentClickedCard }) => {
-
+const WeatherCard = ({ forecast, onClickCard }) => {
   return (
     <div className="weather-container">
       {
@@ -58,7 +55,6 @@ const WeatherCard = ({ forecast, onClickCard, currentClickedCard }) => {
 
 WeatherCard.propTypes = {
   forecast: PropTypes.arrayOf(PropTypes.object),
-  onClickCard: PropTypes.func,
-  currentClickedCard: PropTypes.number
+  onClickCard: PropTypes.func
 }
 export default WeatherCard;

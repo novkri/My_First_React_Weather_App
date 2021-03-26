@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom"
 import './WeatherCard.css'
 import DateDisplay from './DateDisplay'
 import RoundTemp from './RoundTemp'
@@ -7,95 +8,62 @@ import UFIndex from './UFIndex'
 import { GiSunset, GiSunrise } from "react-icons/gi"
 import { IoReturnUpBackOutline } from "react-icons/io5"
 import PropTypes from 'prop-types'
-import {
-  Link,
-} from "react-router-dom"
 import ReactTooltip from 'react-tooltip'
 
+const foo2 = () => {
+  return JSON.parse(localStorage.getItem("ONE_DAY_FORECAST"))[0]
+}
+
 const ChoosenWeather = ({ day }) => {
-  const dayForecast = day[0]
+  const dayForecast = day.length > 0 ? day[0] : foo2()
 
   const renderChoosenBody = () => {
-    if (!day || !day.length) return (
-      <div className="error-container weather-card">
+    if (!dayForecast) return (
+      <div className="error-container">
         <p>Что-то пошло не так :(</p>
       </div>
     )
     return (
       <>
-        <div className="picked-header">
-          <Link to="/">
-            <button
-              data-tip
-              data-for="returnBtn"
-              className="btn picked-close"
-            >
-              <IoReturnUpBackOutline size="1.8rem" />
-            </button>
-
-            <ReactTooltip
-              id="returnBtn"
-              place="top"
-              type="dark"
-              effect="solid"
-            >
-              Назад
-            </ReactTooltip>
-          </Link>
-
-          <h3 className="weather-date">
-            <DateDisplay
-              UTCDate={dayForecast.dt}
-              checkIfToday={true}
-            />
-          </h3>
-        </div>
-
-        <div className="picked-header sub-header">
-          <p>{dayForecast.weather[0].description}</p>
-          <p>max: <RoundTemp temp={dayForecast.temp.max} /></p>
-          <p>min: <RoundTemp temp={dayForecast.temp.min} /></p>
-        </div>
-
         <div className="picked-info">
-            <table className="weather-table">
-              <TableCreator
-                name='Температура'
-                data={dayForecast.temp}
-              />
-            </table>
-            
-            <table className="weather-table">
-              <TableCreator
-              name='Ощущается как'
-              data={dayForecast.feels_like}
+          <table className="weather-table">
+            <TableCreator
+              name='Температура'
+              data={dayForecast.temp}
             />
-            </table> 
+          </table>
+          
+          <table className="weather-table">
+            <TableCreator
+            name='Ощущается как'
+            data={dayForecast.feels_like}
+          />
+          </table> 
 
-            <div className="weather-table">
-              <div className="weather-sun">
-                <GiSunset size="2rem" />
-                <p>
-                  <strong>Восход: </strong> 
-                  <DateDisplay
-                    isDay={false}
-                    UTCDate={dayForecast.sunrise}
-                    options={{hour: 'numeric', minute: '2-digit'}}
-                  />
-                </p>
-              </div>
-              <div className="weather-sun">
-                <GiSunrise size="2rem" />
-                <p>
-                  <strong>Закат: </strong> 
-                  <DateDisplay
-                    isDay={false}
-                    UTCDate={dayForecast.sunset}
-                    options={{hour: 'numeric', minute: '2-digit'}}
-                  />
-                </p>
-              </div>
+          <div className="weather-table">
+            <div className="weather-sun">
+              <GiSunset size="2rem" />
+              <p>
+                <strong>Восход: </strong> 
+                <DateDisplay
+                  isDay={false}
+                  UTCDate={dayForecast.sunrise}
+                  options={{hour: 'numeric', minute: '2-digit'}}
+                />
+              </p>
             </div>
+            <div className="weather-sun">
+              <GiSunrise size="2rem" />
+              <p>
+                <strong>Закат: </strong> 
+                <DateDisplay
+                  isDay={false}
+                  UTCDate={dayForecast.sunset}
+                  options={{hour: 'numeric', minute: '2-digit'}}
+                />
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="picked-footer">
@@ -109,6 +77,40 @@ const ChoosenWeather = ({ day }) => {
 
   return ( 
     <div className="picked-container glass">
+      <div className="picked-header">
+        <Link to="/">
+          <button
+            data-tip
+            data-for="returnBtn"
+            className="btn picked-close"
+          >
+            <IoReturnUpBackOutline size="1.8rem" />
+          </button>
+
+          <ReactTooltip
+            id="returnBtn"
+            place="top"
+            type="dark"
+            effect="solid"
+          >
+            Назад
+          </ReactTooltip>
+        </Link>
+
+        <h3 className="weather-date">
+          <DateDisplay
+            UTCDate={dayForecast.dt}
+            checkIfToday={true}
+          />
+        </h3>
+        </div>
+
+      <div className="picked-header sub-header">
+        <p>{dayForecast.weather[0].description}</p>
+        <p>max: <RoundTemp temp={dayForecast.temp.max} /></p>
+        <p>min: <RoundTemp temp={dayForecast.temp.min} /></p>
+      </div>
+
       { renderChoosenBody() }   
     </div>
    );

@@ -1,5 +1,4 @@
 .graph-carousel {
-    /* margin-top: 5rem; */
     padding: 5rem;
 }
 
@@ -10,12 +9,32 @@
 }
 
 .graph-header {
+    width: 65%;
+    margin: auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 1rem 0;
 }
 
 .graph-title {
     font-size: 1.2rem;
     font-weight: 400;
     margin: 0;
+}
+.graph-btns-container {
+    min-width: 5.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #fff;
+    padding-bottom: .5rem;
+}
+
+.graph-btn {
+    background-color: transparent;
+    color: #fff;
+    font-size: 1.5rem;
+    border-radius: 0;
+    display: flex;
+    align-content: center;
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Graph from './Graph'
 import './Graphs.css'
+import { MdArrowForward, MdArrowBack } from "react-icons/md"
 import PropTypes from 'prop-types'
 
 const graphsVariant = ['Morning', 'Day', 'Evening', 'Night', 'Max', 'Min']
@@ -11,32 +12,28 @@ const GraphCarousel = ({ tempGraph }) => {
   const goToNextGraph = () => {
     const thisIndex = graphsVariant.indexOf(dayToShow)
 
-    const f = graphsVariant.filter((v, i) => {
-      if (thisIndex === graphsVariant.length-1) {return -1}
+    graphsVariant.filter((v, i) => {
+      if (thisIndex === graphsVariant.length-1) {
+        setDayToShow(graphsVariant[0])
+      }
 
       if (i === thisIndex+1) {
-        return v
+        setDayToShow(v)
       }
     })
-
-    setDayToShow(f[0])
   }
 
-  // !!!!! не работает
   const goToPrevGraph = () => {
     const thisIndex = graphsVariant.indexOf(dayToShow)
 
-    const f = graphsVariant.filter((v, i) => {
-     
-      if (thisIndex === -1) {return graphsVariant.length}
-      // console.log(v, i, thisIndex);
+    graphsVariant.filter((v, i) => {
+      if (thisIndex === 0) {
+        setDayToShow(graphsVariant[graphsVariant.length-1])
+      }
       if (i === thisIndex-1) {
-        // console.log(v, i, thisIndex);
-        return v
+        setDayToShow(v)
       }
     })
-
-    setDayToShow(f[0])
   }
 
 
@@ -46,9 +43,9 @@ const GraphCarousel = ({ tempGraph }) => {
         {/* поправить заголовок */}
         <h6 className="graph-title">{dayToShow}</h6>
 
-        <div>
-          <button onClick={goToPrevGraph}>&lt;</button>
-          <button onClick={goToNextGraph}>&gt;</button>
+        <div className="graph-btns-container">
+          <button className="btn graph-btn graph-btn--left" onClick={goToPrevGraph}><MdArrowBack /></button>
+          <button className="btn graph-btn graph-btn--right" onClick={goToNextGraph}><MdArrowForward /></button>
         </div>
         
       </div>

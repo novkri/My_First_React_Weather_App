@@ -55,18 +55,18 @@ function App() {
         data.daily.slice(0, 7).map((r, i) => {
           let customObject = {
             day: new Date(r.dt * 1000).toLocaleDateString('ru-RU', { weekday: 'long' }),
-            Day: r.temp.day,
-            Night: r.temp.night,
-            Morning: r.temp.morn,
-            Evening: r.temp.eve,
-            Max: r.temp.max,
-            Min: r.temp.min,
-            // Day: Math.round(r.temp.day),
-            // Night: Math.round(r.temp.night),
-            // Morning: Math.round(r.temp.morn),
-            // Evening: Math.round(r.temp.eve),
-            // Max: Math.round(r.temp.max),
-            // Min: Math.round(r.temp.min),
+            // Day: r.temp.day,
+            // Night: r.temp.night,
+            // Morning: r.temp.morn,
+            // Evening: r.temp.eve,
+            // Max: r.temp.max,
+            // Min: r.temp.min,
+            Day: Math.round(r.temp.day),
+            Night: Math.round(r.temp.night),
+            Morning: Math.round(r.temp.morn),
+            Evening: Math.round(r.temp.eve),
+            Max: Math.round(r.temp.max),
+            Min: Math.round(r.temp.min),
         }
         customArr.push(customObject)
         return customArr

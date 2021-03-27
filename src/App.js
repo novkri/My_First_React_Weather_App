@@ -58,6 +58,12 @@ function App() {
             Evening: r.temp.eve,
             Max: r.temp.max,
             Min: r.temp.min,
+            // Day: Math.round(r.temp.day),
+            // Night: Math.round(r.temp.night),
+            // Morning: Math.round(r.temp.morn),
+            // Evening: Math.round(r.temp.eve),
+            // Max: Math.round(r.temp.max),
+            // Min: Math.round(r.temp.min),
         }
         customArr.push(customObject);
         })
@@ -99,7 +105,7 @@ function App() {
                   onClickCard={showDetails}
                 />
                 (мб тут батон для графиокв)
-                {tempGraph.length > 0 && <Graph tempGraph={tempGraph} toShow={'Day'} /> }
+                {tempGraph.length > 0 && <Graph tempGraph={tempGraph} toShow={'Max'} /> }
               </>
             )
           }

@@ -35,7 +35,7 @@ const Graph = ({ tempGraph, toShow }) => {
 
       <VictoryBar 
       labels={({ datum }) => datum[`${toShow}`]}
-      labelComponent={<VictoryTooltip pointerLength={0} flyoutStyle={{
+      labelComponent={<VictoryTooltip pointerLength={2} flyoutStyle={{
         stroke: "none", fill: "rgb(11 11 11 / 41%)"
       }}
      />}

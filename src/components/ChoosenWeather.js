@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from "react-router-dom"
 import './WeatherCard.css'
-import DateDisplay from './DateDisplay'
-import RoundTemp from './RoundTemp'
-import TableCreator from './TableCreator'
-import UFIndex from './UFIndex'
+import DateDisplay from './utils/DateDisplay'
+import RoundTemp from './utils/RoundTemp'
+import TableCreator from './utils/TableCreator'
+import UFIndex from './utils/UFIndex'
 import { GiSunset, GiSunrise } from "react-icons/gi"
 import { IoReturnUpBackOutline } from "react-icons/io5"
 import PropTypes from 'prop-types'
@@ -119,4 +119,6 @@ const ChoosenWeather = ({ day }) => {
 ChoosenWeather.propTypes = {
   day: PropTypes.arrayOf(PropTypes.object)
 }
+
+// рефактор ?
 export default ChoosenWeather;

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from "react-router-dom"
 import './WeatherCard.css'
-import DateDisplay from './DateDisplay'
-import RoundTemp from './RoundTemp'
+import DateDisplay from './utils/DateDisplay'
+import RoundTemp from './utils/RoundTemp'
 
 import PropTypes from 'prop-types'
 
@@ -57,4 +57,6 @@ WeatherCard.propTypes = {
   forecast: PropTypes.arrayOf(PropTypes.object),
   onClickCard: PropTypes.func
 }
+
+// рефактор?
 export default WeatherCard;

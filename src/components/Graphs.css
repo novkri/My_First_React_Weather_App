@@ -1,0 +1,21 @@
+.graph-carousel {
+    /* margin-top: 5rem; */
+    padding: 5rem;
+}
+
+.chart-container {
+    width: 70%;
+    margin: 0 auto;
+    height: 90%;
+}
+
+.graph-header {
+    display: flex;
+    justify-content: center;
+}
+
+.graph-title {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 0;
+}

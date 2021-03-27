@@ -7,8 +7,8 @@ import {
 } from "react-router-dom"
 import WeatherCard from './components/WeatherCard'
 import ChoosenWeather from './components/ChoosenWeather'
-import Loader from './components/Loader'
-import Graph from './components/Graph'
+import Loader from './components/utils/Loader'
+import GraphCarousel from './components/GraphCarousel'
 
 
 function App() {
@@ -105,8 +105,11 @@ function App() {
                   forecast={forecast}
                   onClickCard={showDetails}
                 />
-                (мб тут батон для графиокв)
-                {tempGraph.length > 0 && <Graph tempGraph={tempGraph} toShow={'Max'} /> }
+                <div>
+                  <GraphCarousel tempGraph={tempGraph} />
+                  {/* {tempGraph.length > 0 && <Graph tempGraph={tempGraph} toShow={'Max'} /> } */}
+                </div>
+                
               </>
             )
           }

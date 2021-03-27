@@ -40,13 +40,13 @@ const Graph = ({ tempGraph, toShow = 'Day' }) => {
       />
 
       <VictoryBar
-        labels={({ datum }) => [`${datum.day}`, `${datum[`${toShow}`]} °C`]}
+        labels={({ datum }) => [`${datum.day}`, ' ', `${datum[`${toShow}`]} °C`]}
         labelComponent={
           <VictoryTooltip
             pointerLength={2}
             flyoutStyle={
               {
-                stroke: "none", fill: "rgb(81 81 81 / 83%)"
+                stroke: "none", fill: "rgb(81 81 81 / 83%)", 
               }
             }
           />

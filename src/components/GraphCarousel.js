@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Graph from './Graph'
+import TranslateHeader from './utils/TranslateHeader'
 import './Graphs.css'
 import { MdArrowForward, MdArrowBack } from "react-icons/md"
 import PropTypes from 'prop-types'
@@ -40,12 +41,20 @@ const GraphCarousel = ({ tempGraph }) => {
   return ( 
     <div className="graph-carousel">
       <div className="graph-header">
-        {/* поправить заголовок */}
-        <h6 className="graph-title">{dayToShow}</h6>
+        
+        <TranslateHeader header={dayToShow} /> 
 
         <div className="graph-btns-container">
-          <button className="btn graph-btn graph-btn--left" onClick={goToPrevGraph}><MdArrowBack /></button>
-          <button className="btn graph-btn graph-btn--right" onClick={goToNextGraph}><MdArrowForward /></button>
+          <button
+            className="btn graph-btn graph-btn--left"
+            onClick={goToPrevGraph}>
+              <MdArrowBack />
+          </button>
+          <button
+            className="btn graph-btn graph-btn--right"
+            onClick={goToNextGraph}>
+              <MdArrowForward />
+          </button>
         </div>
         
       </div>
@@ -59,4 +68,5 @@ const GraphCarousel = ({ tempGraph }) => {
 GraphCarousel.propTypes = {
   tempGraph: PropTypes.arrayOf(PropTypes.object),
 }
+
 export default GraphCarousel;

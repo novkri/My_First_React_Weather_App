@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 const TableCreator = ({ name, data}) => {
   return ( 
-    <>
+    <table className="weather-table">
       <thead>
         <tr>
           <th className="table-header">{name}</th>
@@ -29,7 +29,7 @@ const TableCreator = ({ name, data}) => {
           <td><RoundTemp temp={data.night} /></td>
         </tr>
       </tbody>
-    </>
+    </table>
    );
 }
 

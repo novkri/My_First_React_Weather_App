@@ -58,5 +58,4 @@ WeatherCard.propTypes = {
   onClickCard: PropTypes.func
 }
 
-// рефактор?
 export default WeatherCard;

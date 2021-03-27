@@ -15,10 +15,11 @@ function App() {
   const [forecast, setForecast] = useState([])
   const [timezone, setTimezone] = useState('')
   const [oneDayForecast, setOneDayForecast] = useState([])
+  const [tempGraph, setTempGraph] = useState({})
+
   const [clickedCard, setClickedCard] = useState()
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
-  const [tempGraph, setTempGraph] = useState({});
 
   const lat = localStorage.getItem("USER_LATITUDE")
   const lon = localStorage.getItem("USER_LONGITUDE")
@@ -42,13 +43,15 @@ function App() {
           .then(data => {
         setTimezone(data.timezone)
 
+        // put it in localStorage bc i have another free api :(
         if (clickedCard) {
           localStorage.setItem("ONE_DAY_FORECAST", JSON.stringify(data.daily.filter(day => day.dt === clickedCard)));
           setOneDayForecast(data.daily.filter(day => day.dt === clickedCard))
         }
         setForecast(data.daily.slice(0, 7))
         
-        let customArr = [];
+        // make data for graphs
+        let customArr = []
         data.daily.slice(0, 7).map((r, i) => {
           let customObject = {
             day: new Date(r.dt * 1000).toLocaleDateString('ru-RU', { weekday: 'long' }),
@@ -87,6 +90,28 @@ function App() {
     setClickedCard(e)    
   }
 
+  const renderHomeBody = () => {
+    return (
+      <div className="App">
+        { isLoading ? 
+          <Loader /> : (
+            isError ? <div className="load-error">Что-то пошло не так :C</div> :
+            <>
+              <h2 className="timezone">{timezone}</h2>
+              <WeatherCard
+                forecast={forecast}
+                onClickCard={showDetails}
+              />
+              <div>
+                {tempGraph.length > 0 && <GraphCarousel tempGraph={tempGraph} />}
+              </div>
+            </>
+          )
+        }
+      </div>
+    )
+  }
+
   return (
     <Router>
       <Switch>
@@ -95,25 +120,7 @@ function App() {
         </Route>
         
         <Route path="/">
-        <div className="App">
-          { isLoading ? 
-            <Loader /> : (
-              isError ? <div className="load-error">Что-то пошло не так :C</div> :
-              <>
-                <h2 className="timezone">{timezone}</h2>
-                <WeatherCard
-                  forecast={forecast}
-                  onClickCard={showDetails}
-                />
-                <div>
-                  <GraphCarousel tempGraph={tempGraph} />
-                  {/* {tempGraph.length > 0 && <Graph tempGraph={tempGraph} toShow={'Max'} /> } */}
-                </div>
-                
-              </>
-            )
-          }
-        </div>
+          { renderHomeBody() }
         </Route>
       </Switch>
     </Router>

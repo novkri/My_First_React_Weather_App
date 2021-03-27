@@ -26,20 +26,16 @@ const ChoosenWeather = ({ day }) => {
     return (
       <>
         <div className="picked-info">
-          <table className="weather-table">
-            <TableCreator
-              name='Температура'
-              data={dayForecast.temp}
-            />
-          </table>
-          
-          <table className="weather-table">
-            <TableCreator
+          <TableCreator
+            name='Температура'
+            data={dayForecast.temp}
+          />
+
+          <TableCreator
             name='Ощущается как'
             data={dayForecast.feels_like}
           />
-          </table> 
-
+  
           <div className="weather-table">
             <div className="weather-sun">
               <GiSunset size="2rem" />
@@ -120,5 +116,4 @@ ChoosenWeather.propTypes = {
   day: PropTypes.arrayOf(PropTypes.object)
 }
 
-// рефактор ?
 export default ChoosenWeather;

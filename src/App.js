@@ -65,7 +65,8 @@ function App() {
             // Max: Math.round(r.temp.max),
             // Min: Math.round(r.temp.min),
         }
-        customArr.push(customObject);
+        customArr.push(customObject)
+        return customArr
         })
 
         setTempGraph(customArr)

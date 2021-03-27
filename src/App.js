@@ -8,6 +8,7 @@ import {
 import WeatherCard from './components/WeatherCard'
 import ChoosenWeather from './components/ChoosenWeather'
 import Loader from './components/Loader'
+import Graph from './components/Graph'
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   const [clickedCard, setClickedCard] = useState()
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
+  const [tempGraph, setTempGraph] = useState({});
 
   const lat = localStorage.getItem("USER_LATITUDE")
   const lon = localStorage.getItem("USER_LONGITUDE")
@@ -45,6 +47,22 @@ function App() {
           setOneDayForecast(data.daily.filter(day => day.dt === clickedCard))
         }
         setForecast(data.daily.slice(0, 7))
+        
+        let customArr = [];
+        data.daily.slice(0, 7).map((r, i) => {
+          let customObject = {
+            day: new Date(r.dt * 1000).toLocaleDateString('ru-RU', { weekday: 'long' }),
+            Day: r.temp.day,
+            Night: r.temp.night,
+            Morning: r.temp.morn,
+            Evening: r.temp.eve,
+            Max: r.temp.max,
+            Min: r.temp.min,
+        }
+        customArr.push(customObject);
+        })
+
+        setTempGraph(customArr)
         })
       } catch (error) {
         setIsError(true)
@@ -80,6 +98,8 @@ function App() {
                   forecast={forecast}
                   onClickCard={showDetails}
                 />
+                (мб тут батон для графиокв)
+                {tempGraph.length > 0 && <Graph tempGraph={tempGraph} toShow={'Day'} /> }
               </>
             )
           }
